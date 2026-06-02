@@ -1,0 +1,24 @@
+# dataset = pandas.DataFrame(Profit)
+# dataset = dataset.drop_duplicates()
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Group sales by gender
+Profit_by_gender = dataset.groupby('Gender')['Profit'].sum()
+
+fig, ax = plt.subplots()
+
+# Transparent backgrounds
+fig.patch.set_alpha(0)
+ax.set_facecolor('none')
+
+# Create bar chart
+Profit_by_gender.plot(kind='pie', colors=['#9467bd', '#17becf'])
+
+
+
+plt.title('Total profit by Gender')
+
+plt.show()
