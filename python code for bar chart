@@ -1,0 +1,35 @@
+# dataset = pandas.DataFrame(Gender, Payment_method, Sales)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here: 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Group sales by gender
+sales_by_gender = dataset.groupby('Gender')['Sales'].sum()
+
+fig, ax = plt.subplots()
+
+# Transparent backgrounds
+fig.patch.set_alpha(0)
+ax.set_facecolor('none')
+
+# Create bar chart
+sales_by_gender.plot(kind='bar', color= "#9467bd")
+
+for container in ax.containers:
+    ax.bar_label(
+        container,
+        labels=[f'{v/1000000:.1f}M' for v in sales_by_gender]
+    )
+
+
+plt.title('Total Sales by Gender')
+plt.xlabel('Gender')
+plt.ylabel('Total Sales')
+
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+
+plt.show()
